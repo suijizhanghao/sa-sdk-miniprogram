@@ -1651,10 +1651,10 @@ sa.autoTrackCustom = {
 
     if (not_use_auto_track) {
       prop = _.extend(prop, not_use_auto_track);
-      sa.track('$MPLaunch', prop);
+      sa.track('$MPLaunch_' + sa.para.fenhang_code, prop);
     } else if (sa.para.autoTrack && sa.para.autoTrack.appLaunch) {
 
-      sa.autoTrackCustom.trackCustom('appLaunch', prop, '$MPLaunch');
+      sa.autoTrackCustom.trackCustom('appLaunch', prop, '$MPLaunch_' + sa.para.fenhang_code,);
     }
   },
   appShow: function(para, not_use_auto_track) {
@@ -1680,9 +1680,9 @@ sa.autoTrackCustom = {
     prop.$url_query = _.setQuery(para.query);
     if (not_use_auto_track) {
       prop = _.extend(prop, not_use_auto_track);
-      sa.track('$MPShow', prop);
+      sa.track('$MPShow_' + sa.para.fenhang_code, prop);
     } else if (sa.para.autoTrack && sa.para.autoTrack.appShow) {
-      sa.autoTrackCustom.trackCustom('appShow', prop, '$MPShow');
+      sa.autoTrackCustom.trackCustom('appShow', prop, '$MPShow_' + sa.para.fenhang_code);
     }
   },
   appHide: function(not_use_auto_track) {
@@ -1694,9 +1694,9 @@ sa.autoTrackCustom = {
     }
     if (not_use_auto_track) {
       prop = _.extend(prop, not_use_auto_track);
-      sa.track('$MPHide', prop);
+      sa.track('$MPHide_' + sa.para.fenhang_code, prop);
     } else if (sa.para.autoTrack && sa.para.autoTrack.appHide) {
-      sa.autoTrackCustom.trackCustom('appHide', prop, '$MPHide');
+      sa.autoTrackCustom.trackCustom('appHide', prop, '$MPHide_' + sa.para.fenhang_code);
     }
     sa.sendStrategy.onAppHide();
   },
@@ -1718,7 +1718,7 @@ sa.autoTrackCustom = {
     if (sa.para.onshow) {
       sa.para.onshow(sa, router, this);
     } else if (sa.para.autoTrack && sa.para.autoTrack.pageShow) {
-      sa.autoTrackCustom.trackCustom('pageShow', prop, '$MPViewScreen');
+      sa.autoTrackCustom.trackCustom('pageShow', prop, '$MPViewScreen_' + sa.para.fenhang_code);
     }
     sa_referrer = router;
     sa.status.referrer = router;
@@ -1735,7 +1735,7 @@ sa.autoTrackCustom = {
         sa.autoTrackCustom.trackCustom('pageShare', {
           $url_path: _.getCurrentPath(),
           $share_depth: _.getShareDepth()
-        }, '$MPShare');
+        }, '$MPShare_' + sa.para.fenhang_code);
       }
 
       if (sa.para.allow_amend_share_path) {
